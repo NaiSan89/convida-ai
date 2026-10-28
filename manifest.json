@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Convida Aí",
+  "version": "1.0.0",
+  "description": "Convida quem reagiu aos posts da página a seguir a página.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "convida-ai@naisan89",
+      "strict_min_version": "109.0"
+    }
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "*://*.facebook.com/*",
+    "https://graph.facebook.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Convida Aí"
+  }
+}

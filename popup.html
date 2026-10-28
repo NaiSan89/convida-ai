@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px system-ui, sans-serif; width: 340px; margin: 0; padding: 12px; color: #1c1e21; }
+  h2 { font-size: 13px; margin: 14px 0 6px; color: #65676b; text-transform: uppercase; letter-spacing: .04em; }
+  #status { background: #f0f2f5; border-radius: 6px; padding: 8px; min-height: 18px; }
+  .stats { display: flex; gap: 12px; margin-top: 6px; color: #65676b; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+  label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: #65676b; }
+  input, textarea { font: inherit; padding: 4px 6px; border: 1px solid #ccd0d5; border-radius: 6px; box-sizing: border-box; width: 100%; }
+  textarea { height: 60px; resize: vertical; }
+  .row { display: flex; gap: 6px; margin-top: 6px; }
+  button { flex: 1; font: inherit; padding: 6px; border: 0; border-radius: 6px; background: #e4e6eb; cursor: pointer; }
+  button.primary { background: #1877f2; color: #fff; }
+  button.danger { background: #e41e3f; color: #fff; }
+</style>
+</head>
+<body>
+  <div id="status">…</div>
+  <div class="stats">
+    <span>Hoje: <b id="today">0</b>/<span id="cap">0</span></span>
+    <span>Total: <b id="total">0</b></span>
+    <span>Fila: <b id="qpos">0/0</b></span>
+  </div>
+
+  <h2>Nesta aba</h2>
+  <div class="row">
+    <button id="runDialog">Convidar no diálogo aberto</button>
+    <button id="runFeed">Varrer feed da página</button>
+  </div>
+
+  <h2>Fila de posts (recomendado)</h2>
+  <label>Token de acesso da página (Graph API)
+    <input id="token" type="password" placeholder="EAAB...">
+  </label>
+  <div class="row"><button id="import">Importar todos os posts</button></div>
+  <label style="margin-top:6px">…ou cole URLs de posts (uma por linha)
+    <textarea id="urls"></textarea>
+  </label>
+  <div class="row"><button id="loadUrls">Carregar lista</button></div>
+  <label style="margin-top:6px">Retomar a partir do post nº
+    <input id="index" type="number" min="1">
+  </label>
+  <div class="row">
+    <button id="startQueue" class="primary">Iniciar fila</button>
+    <button id="stopAll" class="danger">Parar tudo</button>
+  </div>
+
+  <h2>Configurações</h2>
+  <div class="grid">
+    <label>Pausa mín. entre convites (s)<input id="minDelay" type="number" min="1" step="0.5"></label>
+    <label>Pausa máx. entre convites (s)<input id="maxDelay" type="number" min="1" step="0.5"></label>
+    <label>Limite por dia<input id="dailyCap" type="number" min="1"></label>
+    <label>Pausa entre posts (s)<input id="postPause" type="number" min="1"></label>
+  </div>
+  <div class="row"><button id="save">Salvar configurações</button></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
